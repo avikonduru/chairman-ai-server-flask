@@ -24,30 +24,32 @@ def search_reviews(df, product_description, n=3, pprint=True):
 @app.route('/')
 def index():
     if request.method == 'POST':
-        return 'Calling the Chairman AI Python GET route'
+        user = request.form['nm']
+        return 'Calling the Chairman AI Python GET route: ' + user
     else:
-        df = pd.read_csv('wiki_set.csv')
-        df["babbage_search"] = df.babbage_search.apply(eval).apply(np.array)
+        # df = pd.read_csv('wiki_set.csv')
+        # df["babbage_search"] = df.babbage_search.apply(eval).apply(np.array)
 
-        openai.api_key = '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'
+        # openai.api_key = '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'
 
-        res = search_reviews(df, "artificial intelligence", n=3)
+        # res = search_reviews(df, "artificial intelligence", n=3)
 
-        summary_components = []
-        for r in res:
-            summary_components.append(r)
+        # summary_components = []
+        # for r in res:
+        #     summary_components.append(r)
 
-        new_line = '\n'
-        text_prompt = f'Summarize these three articles then combine them into a single article and summarize that article so that the result is a single article that is 500 characters or less in length: 1) {summary_components[0]}{new_line}{new_line} 2) {summary_components[1]}{new_line}{new_line} 3) {summary_components[2]}'
+        # new_line = '\n'
+        # text_prompt = f'Summarize these three articles then combine them into a single article and summarize that article so that the result is a single article that is 500 characters or less in length: 1) {summary_components[0]}{new_line}{new_line} 2) {summary_components[1]}{new_line}{new_line} 3) {summary_components[2]}'
 
-        text_completion = openai.Completion.create(
-            model="text-davinci-002",
-            prompt=text_prompt,
-            max_tokens=510,
-            temperature=0
-        )
-        promptResponse = text_completion['choices'][0].text
+        # text_completion = openai.Completion.create(
+        #     model="text-davinci-002",
+        #     prompt=text_prompt,
+        #     max_tokens=510,
+        #     temperature=0
+        # )
+        # promptResponse = text_completion['choices'][0].text
 
-        print(promptResponse)
+        # print(promptResponse)
 
-        return promptResponse
+        # return promptResponse
+        return "GET Request"
